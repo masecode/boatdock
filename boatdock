@@ -3,7 +3,7 @@
 [ -d ~/docker-backups ] || mkdir ~/docker-backups
 for folder in ~/*; do
 	if [ -f "$folder/docker-compose.yml" ]; then
-		cp -rf "$folder" ~/docker-backups/
+		cp -rfL "$folder" ~/docker-backups/
 	fi
 
 done

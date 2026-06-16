@@ -7,9 +7,8 @@ for folder in ~/*; do
 	fi
 
 done
-
 cd ~/docker-backups
-
+find ~/docker-backups -name ".git" -not -path "$HOME/docker-backups/.git" -exec rm -rf {} +
 if [ ! -d "$HOME/docker-backups/.git" ]; then
 	git init -b main
 	echo "There was no git repository made for docker-backups. Please make a git repository on a git server and send the git link."

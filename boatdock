@@ -1,0 +1,30 @@
+#!/bin/bash
+
+[ -d ~/docker-backups ] || mkdir ~/docker-backups
+for folder in ~/*; do
+	if [ -f "$folder/docker-compose.yml" ]; then
+		cp -rf "$folder" ~/docker-backups/
+	fi
+
+done
+
+cd ~/docker-backups
+
+if [ ! -d "$HOME/docker-backups/.git" ]; then
+	git init -b main
+	echo "There was no git repository made for docker-backups. Please make a git repository on a git server and send the git link."
+	read link
+	if [ "$link" = "" ]; then
+		exit 1
+	fi
+	git remote add origin $link
+	git add .
+	git commit -m "Initial backup at $(date +%F_%T)"
+	git push -u origin main
+	exit 0
+fi
+
+git pull --rebase
+git add .
+git commit -m "Backup at $(date +%F_%T)"
+git push

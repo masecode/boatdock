@@ -10,5 +10,5 @@ If no local git repo exists (or docker-backups doesn't exist) it will make a new
 5. When prompted, enter the Git link from the remote repository you made.
 
 ## Prerequisites
-git
+git<br/>
 bash
